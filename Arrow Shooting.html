@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrow Shooting Game</title>
+  <style>
+    .target {
+      width: 50px;
+      height: 50px;
+      background-color: red;
+      position: absolute;
+      top: 50%;
+      left: 80%;
+    }
+
+    .arrow {
+      width: 20px;
+      height: 5px;
+      background-color: black;
+      position: absolute;
+    }
+
+    button {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="target"></div>
+  <div class="arrow"></div>
+  <button onclick="shootArrow()">Shoot Arrow</button>
+  
+  <script>
+    function shootArrow() {
+      var target = document.querySelector('.target');
+      var arrow = document.querySelector('.arrow');
+
+      // Randomize target position
+      var randomY = Math.floor(Math.random() * 300);
+      target.style.top = randomY + 'px';
+
+      // Animate arrow shooting
+      var arrowPosition = 0;
+      var interval = setInterval(function() {
+        if (arrowPosition >= 800) {
+          clearInterval(interval);
+          arrow.style.left = '-20px'; // Reset arrow position
+          return;
+        }
+        arrow.style.left = arrowPosition + 'px';
+        arrowPosition += 10; // Change this value for different speeds
+      }, 20); // Change this value for smoother/faster animation
+    }
+  </script>
+</body>
+</html>
